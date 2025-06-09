@@ -170,4 +170,3 @@ This project is for educational and internal use. Customize and extend as needed
 ---
 =======
 # simple-code-generator
->>>>>>> 211a9f560adda22c9464bec04865d25d2e0dd70f
