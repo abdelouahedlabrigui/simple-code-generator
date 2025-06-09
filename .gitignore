@@ -1,0 +1,14 @@
+# Exclude VS Code settings
+.vscode/
+
+# Exclude codegen folder
+codegen/
+
+# Exclude Python cache from processcode
+processcode/__pycache__/
+
+# Exclude Maven wrapper files from project
+project/.mvn/
+
+# Exclude VS Code settings from project
+project/.vscode/

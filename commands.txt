@@ -1,0 +1,45 @@
+* **Django**:
+    mkdir spring-code-generator
+    cd spring-code-generator/
+    python3.11 -m venv codegen
+    source codegen/bin/activate
+    pip install Django djangorestframework requests pandas
+    django-admin startproject generator codegenerator
+    cd codegenerator/
+    python3.11 manage.py startapp processcode
+    python3.11 manage.py makemigrations
+    python3.11 manage.py migrate
+* **Spring Boot**:
+    Generate Spring Project: https://start.spring.io/
+    PostgreSQL:
+        add username: spring.datasource.username=
+        add password: spring.datasource.password=
+* **PostgreSQL**:
+    cd postgres-container/
+    sudo docker compose up -d
+* **Simulation**:
+    Routes: 
+        http://127.0.0.1:8000/processcode/submit-dataset/ # Generate Code using inputs
+        http://127.0.0.1:8000/processcode/submit-post-dataset/ # Add data to database
+    Run Django:
+        python3.11 manage.py runserver
+    Run Spring Boot:
+        /usr/bin/env /usr/lib/jvm/jdk-21.0.7-oracle-x64/bin/java @/tmp/cp_zyict3i0ybe6kuvogyq13o62.argfile demo.spring.project.ProjectApplication
+    Template: 1 - Submit Dataset Information
+        Dataset example: 
+            https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/refs/heads/master/all/all.csv
+        Local Path: 
+            /home/user1/Software/microservices/python-software/services/data/codes/country-code.csv
+        Classname:
+            CountryCode
+        Packages String (comma-separated):
+            package demo.spring.project.models;,package demo.spring.project.repositories;,package demo.spring.project.controllers;
+        Addresses String (comma-separated paths):
+            /home/user1/Software/microservices/repositories/spring-code-generator/project/src/main/java/demo/spring/project/models, /home/abdelouahedlabrigui/Software/microservices/repositories/spring-code-generator/project/src/main/java/demo/spring/project/repositories,/home/abdelouahedlabrigui/Software/microservices/repositories/spring-code-generator/project/src/main/java/demo/spring/project/controllers
+        Table Name:
+            country_code
+    Template: 2 - Post Dataset Information
+        CSV Path:
+            /home/user1/Software/microservices/python-software/services/data/codes/country-code.csv
+        Request URL:
+            http://localhost:8081/api/country_code/add # auto-generated

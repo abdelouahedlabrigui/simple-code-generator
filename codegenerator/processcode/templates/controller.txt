@@ -1,0 +1,63 @@
+[package]
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+[entitynamespace]
+[repositorynamespace]
+@RestController
+@RequestMapping("/api/[apiendpoint]")
+public class [classname]Controller {
+    @Autowired
+    private [classname]Repository repository;
+
+    @PostMapping("/add")
+    public ResponseEntity<[classname]> createRecord(@RequestBody [classname] index) {
+        try {
+            index.setOriginal_id(null);
+            [classname] savedQuery = repository.save(index);
+            return ResponseEntity.ok(savedQuery);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<List<[classname]>> getAll(){
+        try {
+            List<[classname]> queries = repository.findAll();
+            if (queries.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            } else {
+                return ResponseEntity.ok(queries);            
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+    @GetMapping("/get-by-id")
+    public ResponseEntity<[classname]> get(@RequestParam Long id){
+        try {
+            if (id == null) {
+                return ResponseEntity.notFound().build();
+            } else {
+                return repository.findById(id)
+                        .map(response -> new ResponseEntity<>(response, HttpStatus.OK))
+                        .orElseGet(() -> {
+                            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+                        });            
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+}
