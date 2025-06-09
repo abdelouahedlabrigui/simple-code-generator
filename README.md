@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Spring Code Generator
 
 A project integrating **Django** (Python), **Spring Boot** (Java), and **PostgreSQL** using Docker to generate and manage code from datasets.
@@ -168,3 +169,6 @@ http://localhost:8081/api/country_code/add
 This project is for educational and internal use. Customize and extend as needed.
 
 ---
+=======
+# simple-code-generator
+>>>>>>> 211a9f560adda22c9464bec04865d25d2e0dd70f
