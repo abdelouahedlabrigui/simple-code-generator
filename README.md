@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Spring Code Generator
 
 A project integrating **Django** (Python), **Spring Boot** (Java), and **PostgreSQL** using Docker to generate and manage code from datasets.
